@@ -1,75 +1,109 @@
 package metier;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.Date;
 
 @Entity
 public class Vol {
     @Id
-    @GeneratedValue (strategy = GenerationType.IDENTITY)
-    private Integer id;
-    private String Duree;
-    private String HeureDepart;
-    private String HeureArrive;
-    private String VilleDepart;
-    private String VilleArrive;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
+    private String ville_depart;
+    private Date date_depart;
+    private String destination;
+    private int nombre_passagers; // Assuming this is a typo and should be 'nombre_passagers' for number of passengers
+    private double prix;
+    @ManyToOne
+    private Compagnie compagnie; // Association with Compagnie
 
-    public Vol(Integer id, String duree, String heureDepart, String heureArrive, String villeDepart, String villeArrive) {
-        this.id = id;
-        Duree = duree;
-        HeureDepart = heureDepart;
-        HeureArrive = heureArrive;
-        VilleDepart = villeDepart;
-        VilleArrive = villeArrive;
+    public Vol() {
+        // Default constructor required by Hibernate
     }
 
-    public Integer getId() {
+    public Vol(String ville_depart, Date date_depart, String destination, int nombre_passagers, double prix, Compagnie compagnie) {
+        this.ville_depart = ville_depart;
+        this.date_depart = date_depart;
+        this.destination = destination;
+        this.nombre_passagers = nombre_passagers;
+        this.prix = prix;
+        this.compagnie = compagnie;
+    }
+
+    public void ouvrirVol() {
+        // Implementation
+    }
+
+    public void fermerVol() {
+        // Implementation
+    }
+
+    // Getters and setters
+    public int getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(int id) {
         this.id = id;
     }
 
-    public String getDuree() {
-        return Duree;
+    public String getVille_depart() {
+        return ville_depart;
     }
 
-    public void setDuree(String duree) {
-        Duree = duree;
+    public void setVille_depart(String ville_depart) {
+        this.ville_depart = ville_depart;
     }
 
-    public String getHeureDepart() {
-        return HeureDepart;
+    public Date getDate_depart() {
+        return date_depart;
     }
 
-    public void setHeureDepart(String heureDepart) {
-        HeureDepart = heureDepart;
+    public void setDate_depart(Date date_depart) {
+        this.date_depart = date_depart;
     }
 
-    public String getHeureArrive() {
-        return HeureArrive;
+    public String getDestination() {
+        return destination;
     }
 
-    public void setHeureArrive(String heureArrive) {
-        HeureArrive = heureArrive;
+    public void setDestination(String destination) {
+        this.destination = destination;
     }
 
-    public String getVilleDepart() {
-        return VilleDepart;
+    public int getNombre_passagers() {
+        return nombre_passagers;
     }
 
-    public void setVilleDepart(String villeDepart) {
-        VilleDepart = villeDepart;
+    public void setNombre_passagers(int nombre_passagers) {
+        this.nombre_passagers = nombre_passagers;
     }
 
-    public String getVilleArrive() {
-        return VilleArrive;
+    public double getPrix() {
+        return prix;
     }
 
-    public void setVilleArrive(String villeArrive) {
-        VilleArrive = villeArrive;
+    public void setPrix(double prix) {
+        this.prix = prix;
+    }
+
+    public Compagnie getCompagnie() {
+        return compagnie;
+    }
+
+    public void setCompagnie(Compagnie compagnie) {
+        this.compagnie = compagnie;
+    }
+
+    @Override
+    public String toString() {
+        return "Vol{" +
+                "id=" + id +
+                ", ville_depart='" + ville_depart + '\'' +
+                ", date_depart=" + date_depart +
+                ", destination='" + destination + '\'' +
+                ", nombre_passagers='" + nombre_passagers + '\'' +
+                ", prix=" + prix +
+                ", compagnie=" + compagnie +
+                '}';
     }
 }
