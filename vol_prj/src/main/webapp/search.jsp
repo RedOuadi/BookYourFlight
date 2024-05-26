@@ -25,6 +25,7 @@
     <input type="number" id="passengers" name="passengers" min="1"><br><br>
 
     <input type="submit" value="Rechercher">
+
 </form>
 </body>
 </html>
